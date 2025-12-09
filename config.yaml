@@ -1,0 +1,128 @@
+# KPI Report Generator Configuration
+
+# Path to directory containing all project repositories
+# Customize this to point to your organization's projects directory
+projects_directory: ./projects
+
+# Whitelist of projects to include (by directory name)
+# Add your microservice/repository names here
+included_projects:
+  - api-gateway-service
+  - user-service
+  - authentication-service
+  - payment-service
+  - notification-service
+  - analytics-service
+  - reporting-service
+  - logging-service
+
+
+# Files/patterns to exclude from line count metrics
+file_exclusions:
+  - "*.lock"
+  - "package-lock.json"
+  - "yarn.lock"
+  - "*.min.js"
+  - "*.min.css"
+  - "*.generated.*"
+  - "node_modules/*"
+  - "migrations/*"
+  - "dist/*"
+  - "build/*"
+
+# Output directory for generated reports
+report_output: ./reports
+
+# Valid branches (warn if project is not on one of these)
+valid_branches:
+  - main
+  - dev
+  - master
+
+# Service Metadata for Executive Summary Generation
+# Customize these to match your organization's microservice architecture
+service_metadata:
+  api-gateway-service:
+    category: "Core Infrastructure"
+    tags: ["API", "routing", "orchestration"]
+    description: "Central API gateway for request routing and orchestration"
+
+  user-service:
+    category: "Core Infrastructure"
+    tags: ["user_management", "authentication", "API"]
+    description: "User profile and account management service"
+
+  authentication-service:
+    category: "Supporting Services"
+    tags: ["authentication", "security", "API"]
+    description: "Authentication and authorization service"
+
+  payment-service:
+    category: "Domain Services"
+    tags: ["transaction_processing", "domain_logic", "API"]
+    description: "Payment processing and transaction management"
+
+  notification-service:
+    category: "Supporting Services"
+    tags: ["messaging", "integration", "API"]
+    description: "Multi-channel notification and messaging service"
+
+  analytics-service:
+    category: "Core Infrastructure"
+    tags: ["analytics", "data_processing", "reporting"]
+    description: "Analytics and business intelligence service"
+
+  reporting-service:
+    category: "Domain Services"
+    tags: ["reporting", "data_presentation", "API"]
+    description: "Report generation and data visualization service"
+
+  logging-service:
+    category: "Supporting Services"
+    tags: ["logging", "monitoring", "infrastructure"]
+    description: "Centralized logging and monitoring infrastructure"
+
+# Tag descriptions for narrative generation
+# Add custom tags that describe your services
+tag_descriptions:
+  API: "API development"
+  routing: "request routing"
+  orchestration: "service coordination"
+  user_management: "user account management"
+  authentication: "authentication and authorization"
+  security: "security features"
+  transaction_processing: "transaction handling"
+  domain_logic: "business logic"
+  messaging: "notification delivery"
+  integration: "system integration"
+  analytics: "analytics capabilities"
+  data_processing: "data pipeline development"
+  reporting: "report generation"
+  data_presentation: "data presentation and visualization"
+  logging: "logging infrastructure"
+  monitoring: "monitoring systems"
+  infrastructure: "infrastructure support"
+  database: "database operations"
+  storage: "data storage"
+  caching: "caching layer"
+
+# Tag grouping for service layer analysis
+# Customize these layers to match your architecture
+tag_groups:
+  service_layers:
+    data_layer: ["data_processing", "database", "storage", "caching"]
+    presentation_layer: ["data_presentation", "API", "routing"]
+    business_layer: ["transaction_processing", "domain_logic", "analytics", "reporting"]
+    infrastructure_layer: ["orchestration", "logging", "monitoring", "authentication"]
+
+  technical_characteristics:
+    real_time_services: ["messaging", "notification"]
+    batch_services: ["data_processing", "analytics", "reporting"]
+    user_facing: ["API", "routing"]
+    backend_services: ["database", "storage", "logging"]
+
+# Category priority for narrative (most important first)
+category_priority:
+  - "Core Infrastructure"
+  - "Domain Services"
+  - "Supporting Services"

@@ -1,0 +1,7 @@
+GitPython==3.1.40
+pytest==7.4.3
+pytest-cov==4.1.0
+PyYAML==6.0.3
+python-dateutil==2.9.0.post0
+Jinja2==3.1.6
+matplotlib==3.10.7
