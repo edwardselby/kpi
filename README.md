@@ -238,6 +238,197 @@ The configuration loader checks files in this order:
 
 This allows you to keep private organization data in `config.local.yaml` (gitignored) while maintaining a generic public template.
 
+### Service Metadata for Executive Summaries
+
+Service metadata enables rich executive summaries and intelligent narrative generation by categorizing your microservices and defining their technical characteristics.
+
+#### Metadata Structure
+
+Each service can have:
+- **category**: High-level grouping (Core Infrastructure, Domain Services, User Features, Supporting Services)
+- **tags**: Technical characteristics for detailed analysis
+- **description**: Human-readable purpose of the service
+
+#### Complete E-commerce Example
+
+```yaml
+service_metadata:
+  # Core Infrastructure - Critical business systems
+  product-catalog-service:
+    category: "Core Infrastructure"
+    tags: ["API", "database", "search", "caching"]
+    description: "Product catalog with search and recommendations"
+
+  inventory-management-service:
+    category: "Core Infrastructure"
+    tags: ["inventory", "database", "real_time", "API"]
+    description: "Real-time inventory tracking and allocation"
+
+  # Domain Services - Business logic
+  pricing-engine-service:
+    category: "Domain Services"
+    tags: ["domain_logic", "calculation", "API"]
+    description: "Dynamic pricing and promotion calculation engine"
+
+  order-orchestrator-service:
+    category: "Domain Services"
+    tags: ["orchestration", "domain_logic", "transaction_processing"]
+    description: "Order workflow orchestration and fulfillment coordination"
+
+  # User Features - Customer-facing
+  shopping-cart-service:
+    category: "User Features"
+    tags: ["user_interface", "real_time", "API"]
+    description: "Shopping cart and checkout experience"
+
+  payment-gateway-service:
+    category: "User Features"
+    tags: ["transaction_processing", "security", "API", "integration"]
+    description: "Payment processing and fraud detection"
+
+  # Supporting Services - Infrastructure
+  notification-service:
+    category: "Supporting Services"
+    tags: ["messaging", "email", "infrastructure"]
+    description: "Multi-channel customer notifications"
+
+  analytics-service:
+    category: "Supporting Services"
+    tags: ["analytics", "data_processing", "monitoring"]
+    description: "Customer behavior analytics and reporting"
+
+# Tag descriptions for narrative generation
+tag_descriptions:
+  API: "API development"
+  database: "database operations"
+  search: "search functionality"
+  caching: "caching layer"
+  inventory: "inventory management"
+  real_time: "real-time processing"
+  domain_logic: "business logic"
+  calculation: "calculation engine"
+  orchestration: "service coordination"
+  transaction_processing: "transaction handling"
+  user_interface: "user-facing features"
+  security: "security features"
+  integration: "external integrations"
+  messaging: "messaging systems"
+  email: "email delivery"
+  infrastructure: "infrastructure support"
+  analytics: "analytics capabilities"
+  data_processing: "data pipeline"
+  monitoring: "monitoring systems"
+
+# Tag grouping for service layer analysis
+tag_groups:
+  service_layers:
+    data_layer: ["database", "caching", "data_processing"]
+    presentation_layer: ["API", "user_interface"]
+    business_layer: ["domain_logic", "transaction_processing", "calculation"]
+    infrastructure_layer: ["orchestration", "integration", "messaging"]
+
+  technical_characteristics:
+    real_time_services: ["real_time", "inventory"]
+    batch_services: ["data_processing", "analytics"]
+    user_facing: ["user_interface", "API"]
+    backend_services: ["database", "messaging", "monitoring"]
+
+# Category priority for narrative (most important first)
+category_priority:
+  - "Core Infrastructure"
+  - "Domain Services"
+  - "User Features"
+  - "Supporting Services"
+```
+
+#### SaaS Platform Example
+
+```yaml
+service_metadata:
+  user-auth-service:
+    category: "Core Infrastructure"
+    tags: ["authentication", "security", "API"]
+    description: "User authentication and session management"
+
+  subscription-service:
+    category: "Domain Services"
+    tags: ["domain_logic", "billing", "transaction_processing"]
+    description: "Subscription lifecycle and tier management"
+
+  billing-service:
+    category: "Domain Services"
+    tags: ["transaction_processing", "integration", "API"]
+    description: "Payment processing and invoice generation"
+
+  workspace-service:
+    category: "User Features"
+    tags: ["user_interface", "collaboration", "real_time"]
+    description: "Collaborative workspace management"
+
+  reporting-dashboard-service:
+    category: "User Features"
+    tags: ["analytics", "data_presentation", "user_interface"]
+    description: "Customer-facing analytics and reporting"
+
+  email-service:
+    category: "Supporting Services"
+    tags: ["messaging", "infrastructure", "integration"]
+    description: "Transactional email delivery"
+
+tag_descriptions:
+  authentication: "authentication services"
+  security: "security features"
+  billing: "billing operations"
+  collaboration: "collaboration features"
+  data_presentation: "data visualization"
+```
+
+#### How Metadata Drives Narratives
+
+The tool uses this metadata to generate executive summaries like:
+
+**Example Output:**
+```
+Executive Summary:
+- Core Infrastructure saw the most activity with 45 releases across
+  authentication services and API development
+- Domain Services focused on billing operations and business logic (28 releases)
+- User-facing features received 15 releases improving collaboration features
+  and data visualization
+- Top contributor: user-auth-service (authentication services, security features)
+```
+
+#### Best Practices
+
+1. **Consistent Categories**: Use the same 4 categories across your organization
+2. **Meaningful Tags**: Choose tags that reflect technical characteristics, not service names
+3. **Tag Descriptions**: Keep descriptions concise and action-oriented
+4. **Layer Grouping**: Organize tags into logical layers for architectural insights
+5. **Priority Order**: List categories by business importance for better narratives
+
+#### Available Categories
+
+| Category | Purpose | Examples |
+|----------|---------|----------|
+| Core Infrastructure | Mission-critical business systems | Auth, catalog, inventory |
+| Domain Services | Business logic and workflows | Pricing, orders, billing |
+| User Features | Customer-facing functionality | Cart, dashboard, search |
+| Supporting Services | Infrastructure and utilities | Logging, email, monitoring |
+
+#### Common Tags by Domain
+
+**E-commerce:**
+- `inventory`, `pricing`, `cart`, `checkout`, `fulfillment`, `shipping`
+
+**SaaS:**
+- `authentication`, `subscription`, `billing`, `workspace`, `collaboration`, `reporting`
+
+**Fintech:**
+- `transaction`, `compliance`, `risk_assessment`, `fraud_detection`, `ledger`, `reconciliation`
+
+**General:**
+- `API`, `database`, `caching`, `real_time`, `analytics`, `security`, `integration`
+
 ---
 
 ## Testing
