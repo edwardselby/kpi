@@ -19,6 +19,39 @@ A domain-agnostic tool for generating professional KPI reports from git reposito
 
 ---
 
+## ⚠️ Important: Project Directory Structure
+
+**All git repositories to be analyzed must be located in the same parent directory** specified by `projects_directory` in your configuration file.
+
+The tool looks for repositories using this structure:
+```
+projects_directory/
+├── service-1/          # Git repository 1
+│   └── .git/
+├── service-2/          # Git repository 2
+│   └── .git/
+└── service-3/          # Git repository 3
+    └── .git/
+```
+
+**Example Configuration:**
+```yaml
+# config.yaml
+projects_directory: /Users/username/projects
+
+included_projects:
+  - service-1    # Must exist at: /Users/username/projects/service-1
+  - service-2    # Must exist at: /Users/username/projects/service-2
+  - service-3    # Must exist at: /Users/username/projects/service-3
+```
+
+If a repository is not found in the `projects_directory`, it will be skipped with a warning:
+```
+⚠️  SKIP: service-name (not found at /Users/username/projects/service-name)
+```
+
+---
+
 ## Quick Start
 
 ### Prerequisites
